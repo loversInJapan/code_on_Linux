@@ -31,6 +31,14 @@ int main()
 
     for(auto print : vec_str)
 	cout << print << endl;
+    input.close();
+    ofstream output("e8-4.txt",ofstream::app);
+    while(getline(cin, line))
+    {
+    	output << line << endl;
+    }
+    output.close();
+
 
     return 0;
 }
