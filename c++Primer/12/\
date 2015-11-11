@@ -170,6 +170,8 @@ StrBlobPtr& StrBlobPtr::operator-(int move)
 
 int main()
 {
+    const int i = 2;
+    ++i;
     initializer_list<string> il = {"a","an","the"};
     initializer_list<string> il2 = {"nba","cba"};
     StrBlob sb1(il);

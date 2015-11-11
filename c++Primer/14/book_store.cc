@@ -11,6 +11,7 @@ using namespace std;
 
 int main()
 {
+    /*
     Sales_data total;
     if(cin >> total){
 	Sales_data trans;
@@ -26,6 +27,9 @@ int main()
     }else{
 	cerr << "no data?" << endl;
 	return -1;
-    }
+    }*/
+    Sales_data a;
+    a = "harry potter";
+    cout << a << endl;
     return 0;
 }

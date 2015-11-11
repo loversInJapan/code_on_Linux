@@ -37,6 +37,12 @@ Sales_data& Sales_data::operator=(const Sales_data &rhs)
     return *this;
 }
 
+Sales_data& Sales_data::operator=(const string &s)
+{
+    book_no_ = s;
+    return *this;
+}
+
 Sales_data operator+(const Sales_data &lhs, const Sales_data &rhs)
 {
     Sales_data sum = lhs;
