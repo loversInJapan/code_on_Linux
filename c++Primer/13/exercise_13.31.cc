@@ -15,7 +15,7 @@ using namespace std;
 //value-like
 class HasPtr{
 public:
-    friend bool operator<(HasPtr, HasPtr);
+    friend bool Compare(const HasPtr&, const HasPtr&);
     //friend [](HasPtr, HasPtr);
     friend void swap(HasPtr&, HasPtr&);
     HasPtr(const string &s = string()) : ps_(new string(s)),i_(0){}
@@ -25,6 +25,10 @@ public:
 	i_ = rhs.i_;
     }
     HasPtr& operator=(HasPtr rhs);
+    bool operator<(const HasPtr& rhs)
+    {
+	return *this->ps_ < *rhs.ps_ ? true : false;
+    }
     ~HasPtr()
     {
 	delete ps_;
@@ -39,7 +43,7 @@ private:
     int i_ = 0;
 };
 
-bool operator<(HasPtr lhs, HasPtr rhs)
+bool Compare(const HasPtr &lhs, const HasPtr &rhs)
 {
     return *lhs.ps_ < *rhs.ps_ ? true : false;
 }
@@ -77,7 +81,7 @@ int main()
     HasPtr v1("hello");
     HasPtr v2("apple");
     vector<HasPtr> vec = {hp, ho, v1, v2};
-    sort(vec.begin(), vec.end(), operator<(HasPtr lrs, HasPtr rhs));
+    sort(vec.begin(), vec.end());//, Compare);
 	    //[](HasPtr a, HasPtr b){return *a.ps_ < *b.ps_ ? true : false;});
     for(auto elem : vec){
 	elem.show(cout) << endl;
