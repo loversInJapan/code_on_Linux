@@ -17,7 +17,9 @@ class StrVec{
 public:
     StrVec():elements_(nullptr),first_free_(nullptr),cap_(nullptr) {}
     StrVec(const StrVec& sv);
+    StrVec(StrVec &&rhs) noexcept;
     StrVec& operator=(const StrVec& sv);
+    StrVec& operator=(StrVec &&rhs)noexcept;
     ~StrVec();
     void push_back(const string& s);
     size_t size() const {return first_free_ - elements_;}
@@ -40,6 +42,29 @@ private:
 };
 
 allocator<string> StrVec::alloc;
+
+StrVec::StrVec(StrVec&& rhs)noexcept
+{
+    //free();
+    elements_ = rhs.elements_;
+    first_free_ = rhs.first_free_;
+    cap_ = rhs.cap_;
+    rhs.elements_ = nullptr;
+    rhs.first_free_ = nullptr;
+    rhs.cap_ = nullptr;
+}
+
+StrVec& StrVec::operator=(StrVec&& rhs)noexcept
+{
+    if(this != &rhs){
+	free();
+	elements_ = rhs.elements_;
+	first_free_ = rhs.first_free_;
+	cap_ = rhs.cap_;
+	elements_ = first_free_ = cap_ = nullptr;
+    }
+    return *this;
+}
 
 void StrVec::push_back(const string& s)
 {
