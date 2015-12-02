@@ -126,6 +126,13 @@ StrVec& StrVec::operator=(const StrVec& sv)
 
 int main()
 {
+    StrVec sv;
+    sv.push_back("aaa");
+    sv.push_back("aaa");
+    sv.push_back("aaa");
+    for(auto p = sv.begin(); p != sv.end(); ++p)
+	cout << *p << " ";
+    cout << endl;
     return 0;
 }
 
